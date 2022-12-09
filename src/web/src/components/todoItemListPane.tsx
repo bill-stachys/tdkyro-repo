@@ -248,7 +248,7 @@ const TodoItemListPane: FC<TodoItemListPaneProps> = (props: TodoItemListPaneProp
             }
             {props.items && items.length === 0 &&
                 <Stack.Item align="center" tokens={stackItemPadding}>
-                    <Text>This list is empty.</Text>
+                    <Text>No items yet.</Text>
                 </Stack.Item>
             }
         </Stack>
