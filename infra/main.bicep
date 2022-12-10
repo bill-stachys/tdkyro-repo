@@ -74,6 +74,28 @@ module web './app/web.bicep' = {
   }
 }
 
+// Web2 frontend
+module web2 './app/web.bicep' = {
+  name: 'web2'
+  scope: rg
+  params: {
+    name: !empty(webContainerAppName) ? webContainerAppName : '${abbrs.appContainerApps}web2-${resourceToken}'
+    location: location
+    imageName: webImageName
+    apiContainerAppName: api.outputs.SERVICE_API_NAME
+    applicationInsightsName: monitoring.outputs.applicationInsightsName
+    containerAppsEnvironmentName: containerApps.outputs.environmentName
+    containerRegistryName: containerApps.outputs.registryName
+    keyVaultName: keyVault.outputs.name
+  }
+}
+
+
+
+
+
+
+
 // Api backend
 module api './app/api.bicep' = {
   name: 'api'
