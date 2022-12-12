@@ -18,7 +18,7 @@ param containerCpuCoreCount string = '0.5'
 @description('Memory allocated to a single container instance, e.g. 1Gi')
 param containerMemory string = '1.0Gi'
 
-resource app 'Microsoft.App/containerApps@2022-03-01' = {
+resource app3 'Microsoft.App/containerApps@2022-03-01' = {
   name: name
   location: location
   tags: tags
@@ -71,7 +71,7 @@ resource containerRegistry 'Microsoft.ContainerRegistry/registries@2022-02-01-pr
   name: containerRegistryName
 }
 
-output identityPrincipalId string = managedIdentity ? app.identity.principalId : ''
+output identityPrincipalId string = managedIdentity ? app3.identity.principalId : ''
 output imageName string = imageName
-output name string = app.name
-output uri string = 'https://${app.properties.configuration.ingress.fqdn}'
+output name string = app3.name
+output uri string = 'https://${app3.properties.configuration.ingress.fqdn}'

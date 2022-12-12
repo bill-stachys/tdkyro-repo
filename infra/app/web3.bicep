@@ -2,7 +2,7 @@ param name string
 param location string = resourceGroup().location
 param tags object = {}
 
-param apiContainerAppName string
+param api2ContainerAppName string
 param applicationInsightsName string
 param containerAppsEnvironmentName string
 param containerRegistryName string
@@ -10,8 +10,8 @@ param imageName string = ''
 param keyVaultName string
 param serviceName string = 'web3'
 
-module app '../core/host/container-app3.bicep' = {
-  name: '${serviceName}-container-app-module'
+module app3 '../core/host/container-app3.bicep' = {
+  name: '${serviceName}-container-app3-module'
   params: {
     name: name
     location: location
@@ -25,7 +25,7 @@ module app '../core/host/container-app3.bicep' = {
       }
       {
         name: 'REACT_APP_API_BASE_URL'
-        value: 'https://${api.properties.configuration.ingress.fqdn}'
+        value: 'https://${api2.properties.configuration.ingress.fqdn}'
       }
       {
         name: 'APPLICATIONINSIGHTS_CONNECTION_STRING'
@@ -46,11 +46,12 @@ resource keyVault 'Microsoft.KeyVault/vaults@2022-07-01' existing = {
   name: keyVaultName
 }
 
-resource api 'Microsoft.App/containerApps@2022-03-01' existing = {
-  name: apiContainerAppName
+resource api2 'Microsoft.App/containerApps@2022-03-01' existing = {
+  name: api2ContainerAppName
 }
 
-output SERVICE_WEB_IDENTITY_PRINCIPAL_ID string = app.outputs.identityPrincipalId
-output SERVICE_WEB_NAME string = app.outputs.name
-output SERVICE_WEB_URI string = app.outputs.uri
-output SERVICE_WEB_IMAGE_NAME string = app.outputs.imageName
+
+output SERVICE_WEB_IDENTITY_PRINCIPAL_ID string = app3.outputs.identityPrincipalId
+output SERVICE_WEB_NAME string = app3.outputs.name
+output SERVICE_WEB_URI string = app3.outputs.uri
+output SERVICE_WEB_IMAGE_NAME string = app3.outputs.imageName
