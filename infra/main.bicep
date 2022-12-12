@@ -112,7 +112,7 @@ module api2 './app/api2.bicep' = {
   name: 'api2'
   scope: rg
   params: {
-    name: !empty(api2ContainerAppName) ? apiContainerAppName : '${abbrs.appContainerApps}api2-${resourceToken}'
+    name: !empty(api2ContainerAppName) ? api2ContainerAppName : '${abbrs.appContainerApps}api2-${resourceToken}'
     location: location
     imageName: apiImageName
     applicationInsightsName: monitoring.outputs.applicationInsightsName
@@ -132,6 +132,18 @@ module apiKeyVaultAccess './core/security/keyvault-access.bicep' = {
     principalId: api.outputs.SERVICE_API_IDENTITY_PRINCIPAL_ID
   }
 }
+
+// Give the API access to KeyVault
+module api2KeyVaultAccess './core/security/keyvault-access.bicep' = {
+  name: 'api2-keyvault-access'
+  scope: rg
+  params: {
+    keyVaultName: keyVault.outputs.name
+    principalId: api2.outputs.SERVICE_API_IDENTITY_PRINCIPAL_ID
+  }
+}
+
+
 
 // The application database
 module cosmos './app/db.bicep' = {
