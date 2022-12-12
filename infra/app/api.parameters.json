@@ -21,7 +21,7 @@
       "value": "${AZURE_CONTAINER_REGISTRY_NAME}"
     },
     "keyVaultName": {
-      "value": "kyroault"
+      "value": "${AZURE_KEY_VAULT_NAME}"
     }
   }
 }
