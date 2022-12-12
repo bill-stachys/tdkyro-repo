@@ -242,7 +242,7 @@ const TodoItemListPane: FC<TodoItemListPaneProps> = (props: TodoItemListPaneProp
             }
             {!props.items &&
                 <Stack.Item align="center" tokens={stackItemPadding}>
-                    <Label>Loading List Items...</Label>
+                    <Label>Just Wait...</Label>
                     <Spinner size={SpinnerSize.large} labelPosition="top" /> 
                 </Stack.Item>
             }
