@@ -201,7 +201,7 @@ const TodoItemListPane: FC<TodoItemListPaneProps> = (props: TodoItemListPaneProp
                                 items={[
                                     {
                                         key: 'markComplete',
-                                        text: 'Mark Complete',
+                                        text: 'Completed',
                                         disabled: props.disabled,
                                         iconProps: { iconName: 'Completed' },
                                         onClick: () => { completeItems() }
