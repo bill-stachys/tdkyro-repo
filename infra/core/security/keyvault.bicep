@@ -1,11 +1,11 @@
-param name string
+param kyroault string
 param location string = resourceGroup().location
 param tags object = {}
 
 param principalId string = ''
 
 resource keyVault 'Microsoft.KeyVault/vaults@2022-07-01' = {
-  name: name
+  name: kyroault
   location: location
   tags: tags
   properties: {

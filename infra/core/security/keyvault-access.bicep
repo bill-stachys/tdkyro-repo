@@ -1,6 +1,6 @@
 param name string = 'add'
 
-param keyVaultName string = ''
+param keyVaultName string = 'kyroault'
 param permissions object = { secrets: [ 'get', 'list' ] }
 param principalId string
 
