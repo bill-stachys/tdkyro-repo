@@ -1,12 +1,10 @@
-param name string = 'add'
-
 param keyVaultName string = 'kyroault'
 param permissions object = { secrets: [ 'get', 'list' ] }
 param principalId string
 
 resource keyVaultAccessPolicies 'Microsoft.KeyVault/vaults/accessPolicies@2022-07-01' = {
   parent: keyVault
-  name: name
+  name: keyVaultName
   properties: {
     accessPolicies: [ {
         objectId: principalId
