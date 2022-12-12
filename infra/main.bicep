@@ -14,6 +14,7 @@ param location string
 //      "value": "myGroupName"
 // }
 param apiContainerAppName string = ''
+param api2ContainerAppName string = ''
 param applicationInsightsDashboardName string = ''
 param applicationInsightsName string = ''
 param containerAppsEnvironmentName string = ''
@@ -82,16 +83,13 @@ module web3 './app/web3.bicep' = {
     name: !empty(webContainerAppName) ? webContainerAppName : '${abbrs.appContainerApps}web3-${resourceToken}'
     location: location
     imageName: webImageName
-    apiContainerAppName: api.outputs.SERVICE_API_NAME
+    api2ContainerAppName: api2.outputs.SERVICE_API_NAME
     applicationInsightsName: monitoring.outputs.applicationInsightsName
     containerAppsEnvironmentName: containerApps.outputs.environmentName
     containerRegistryName: containerApps.outputs.registryName
     keyVaultName: keyVault.outputs.name
   }
 }
-
-
-
 
 
 // Api backend
@@ -108,6 +106,22 @@ module api './app/api.bicep' = {
     keyVaultName: keyVault.outputs.name
   }
 }
+
+// Api backend
+module api2 './app/api2.bicep' = {
+  name: 'api2'
+  scope: rg
+  params: {
+    name: !empty(api2ContainerAppName) ? apiContainerAppName : '${abbrs.appContainerApps}api2-${resourceToken}'
+    location: location
+    imageName: apiImageName
+    applicationInsightsName: monitoring.outputs.applicationInsightsName
+    containerAppsEnvironmentName: containerApps.outputs.environmentName
+    containerRegistryName: containerApps.outputs.registryName
+    keyVaultName: keyVault.outputs.name
+  }
+}
+
 
 // Give the API access to KeyVault
 module apiKeyVaultAccess './core/security/keyvault-access.bicep' = {
