@@ -75,11 +75,11 @@ module web './app/web.bicep' = {
 }
 
 // Web2 frontend
-module web2 './app/web.bicep' = {
-  name: 'web2'
+module web3 './app/web3.bicep' = {
+  name: 'web3'
   scope: rg
   params: {
-    name: !empty(webContainerAppName) ? webContainerAppName : '${abbrs.appContainerApps}web2-${resourceToken}'
+    name: !empty(webContainerAppName) ? webContainerAppName : '${abbrs.appContainerApps}web3-${resourceToken}'
     location: location
     imageName: webImageName
     apiContainerAppName: api.outputs.SERVICE_API_NAME
@@ -89,8 +89,6 @@ module web2 './app/web.bicep' = {
     keyVaultName: keyVault.outputs.name
   }
 }
-
-
 
 
 

@@ -8,9 +8,9 @@ param containerAppsEnvironmentName string
 param containerRegistryName string
 param imageName string = ''
 param keyVaultName string
-param serviceName string = 'web2'
+param serviceName string = 'web3'
 
-module app '../core/host/container-app.bicep' = {
+module app '../core/host/container-app3.bicep' = {
   name: '${serviceName}-container-app-module'
   params: {
     name: name

@@ -35,6 +35,32 @@ module app '../core/host/container-app.bicep' = {
   }
 }
 
+module app3 '../core/host/container-app3.bicep' = {
+  name: '${serviceName}-container-app-module'
+  params: {
+    name: name
+    location: location
+    tags: union(tags, { 'azd-service-name': serviceName })
+    containerAppsEnvironmentName: containerAppsEnvironmentName
+    containerRegistryName: containerRegistryName
+    containerCpuCoreCount: '1.0'
+    containerMemory: '2.0Gi'
+    env: [
+      {
+        name: 'AZURE_KEY_VAULT_ENDPOINT'
+        value: keyVault.properties.vaultUri
+      }
+      {
+        name: 'APPLICATIONINSIGHTS_CONNECTION_STRING'
+        value: applicationInsights.properties.ConnectionString
+      }
+    ]
+    imageName: !empty(imageName) ? imageName : 'nginx:latest'
+    keyVaultName: keyVault.name
+    targetPort: 3101
+  }
+}
+
 resource applicationInsights 'Microsoft.Insights/components@2020-02-02' existing = {
   name: applicationInsightsName
 }
