@@ -86,7 +86,7 @@ export const TodoItemDetailPane: FC<TodoItemDetailPaneProps> = (props: TodoItemD
             {!props.item &&
                 <Stack.Item tokens={stackItemPadding} style={{ textAlign: "center" }} align="center">
                     <FontIcon iconName="WorkItem" style={{ fontSize: 24, padding: 20 }} />
-                    <Text block>Click to edit</Text>
+                    <Text block>Edit</Text>
                 </Stack.Item>}
         </Stack >
     );
