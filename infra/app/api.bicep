@@ -36,7 +36,7 @@ module app '../core/host/container-app.bicep' = {
 }
 
 module app2 '../core/host/container-app3.bicep' = {
-  name: '${serviceName}-container-app-module'
+  name: '${serviceName}-container-app-module2'
   params: {
     name: name
     location: location
