@@ -14,7 +14,7 @@ param serviceName2 string = 'web2'
 module app '../core/host/container-app.bicep' = {
   name: '${serviceName}-container-app-module'
   params: {
-    name: '${name}-web-1'
+    name: '${name}-web-one'
     location: location
     tags: union(tags, { 'azd-service-name': serviceName })
     containerAppsEnvironmentName: containerAppsEnvironmentName
@@ -42,7 +42,7 @@ module app '../core/host/container-app.bicep' = {
 module app2 '../core/host/container-app.bicep' = {
   name: '${serviceName2}-container-app-module'
   params: {
-    name: '${name}-web-2'
+    name: '${name}-web-two'
     location: location
     tags: union(tags, { 'azd-service-name': serviceName })
     containerAppsEnvironmentName: containerAppsEnvironmentName
