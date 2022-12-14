@@ -8,12 +8,12 @@ param containerAppsEnvironmentName string
 param containerRegistryName string
 param imageName string = ''
 param keyVaultName string
-param serviceName string = 'web-one'
+param serviceName string = 'second-web'
 
-module app '../core/host/container-app.bicep' = {
-  name: '${serviceName}-container-app-module'
+module secondapp '../core/host/container-app.bicep' = {
+  name: '${serviceName}-container-app-module-second'
   params: {
-    name: '${name}-web-one'
+    name: '${name}-second-web'
     location: location
     tags: union(tags, { 'azd-service-name': serviceName })
     containerAppsEnvironmentName: containerAppsEnvironmentName
@@ -34,7 +34,7 @@ module app '../core/host/container-app.bicep' = {
     ]
     imageName: !empty(imageName) ? imageName : 'nginx:latest'
     keyVaultName: keyVault.name
-    targetPort: 80
+    targetPort: 81
   }
 }
 
@@ -50,7 +50,7 @@ resource api 'Microsoft.App/containerApps@2022-03-01' existing = {
   name: apiContainerAppName
 }
 
-output SERVICE_WEB_IDENTITY_PRINCIPAL_ID string = app.outputs.identityPrincipalId
-output SERVICE_WEB_NAME string = app.outputs.name
-output SERVICE_WEB_URI string = app.outputs.uri
-output SERVICE_WEB_IMAGE_NAME string = app.outputs.imageName
+output SERVICE_WEB_IDENTITY_PRINCIPAL_ID string = secondapp.outputs.identityPrincipalId
+output SERVICE_WEB_NAME string = secondapp.outputs.name
+output SERVICE_WEB_URI string = secondapp.outputs.uri
+output SERVICE_WEB_IMAGE_NAME string = secondapp.outputs.imageName

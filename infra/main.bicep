@@ -75,7 +75,7 @@ module web './app/web.bicep' = {
 }
 
 // Web2 frontend
-module web2 './app/web.bicep' = {
+module web2 './app/web2.bicep' = {
   name: 'web2'
   scope: rg
   params: {
