@@ -9,6 +9,7 @@ param containerRegistryName string
 param imageName string = ''
 param keyVaultName string
 param serviceName string = 'web'
+param serviceName2 string = 'web2'
 
 module app '../core/host/container-app.bicep' = {
   name: '${serviceName}-container-app-module'
@@ -39,7 +40,7 @@ module app '../core/host/container-app.bicep' = {
 }
 
 module app2 '../core/host/container-app.bicep' = {
-  name: '${serviceName}-container-app-module'
+  name: '${serviceName2}-container-app-module'
   params: {
     name: name
     location: location
