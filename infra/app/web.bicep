@@ -8,8 +8,8 @@ param containerAppsEnvironmentName string
 param containerRegistryName string
 param imageName string = ''
 param keyVaultName string
-param serviceName string = 'web'
-param serviceName2 string = 'web2'
+param serviceName string = 'web-one'
+param serviceName2 string = 'web-two'
 
 module app '../core/host/container-app.bicep' = {
   name: '${serviceName}-container-app-module'
@@ -83,3 +83,7 @@ output SERVICE_WEB_IDENTITY_PRINCIPAL_ID string = app.outputs.identityPrincipalI
 output SERVICE_WEB_NAME string = app.outputs.name
 output SERVICE_WEB_URI string = app.outputs.uri
 output SERVICE_WEB_IMAGE_NAME string = app.outputs.imageName
+output SERVICE_WEB_IDENTITY_PRINCIPAL_ID2 string = app2.outputs.identityPrincipalId
+output SERVICE_WEB_NAME2 string = app2.outputs.name
+output SERVICE_WEB_URI2 string = app2.outputs.uri
+output SERVICE_WEB_IMAGE_NAME2 string = app2.outputs.imageName
