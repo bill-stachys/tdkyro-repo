@@ -11,7 +11,7 @@ param keyVaultName string
 param serviceName string = 'second-web'
 
 module secondapp '../core/host/container-app.bicep' = {
-  name: '${serviceName}-container-app-module-second'
+  name: '${serviceName}-module2'
   params: {
     name: '${name}2'
     location: location

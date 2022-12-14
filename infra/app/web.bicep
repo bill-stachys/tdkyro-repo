@@ -11,7 +11,7 @@ param keyVaultName string
 param serviceName string = 'web-one'
 
 module app '../core/host/container-app.bicep' = {
-  name: '${serviceName}-container-app-module'
+  name: '${serviceName}-module1'
   params: {
     name: '${name}1'
     location: location
