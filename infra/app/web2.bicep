@@ -13,7 +13,7 @@ param serviceName string = 'second-web'
 module secondapp '../core/host/container-app.bicep' = {
   name: '${serviceName}-container-app-module-second'
   params: {
-    name: '${name}-second-web'
+    name: '${name}2'
     location: location
     tags: union(tags, { 'azd-service-name': serviceName })
     containerAppsEnvironmentName: containerAppsEnvironmentName

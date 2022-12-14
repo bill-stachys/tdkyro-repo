@@ -13,7 +13,7 @@ param serviceName string = 'web-one'
 module app '../core/host/container-app.bicep' = {
   name: '${serviceName}-container-app-module'
   params: {
-    name: '${name}-web-one'
+    name: '${name}1'
     location: location
     tags: union(tags, { 'azd-service-name': serviceName })
     containerAppsEnvironmentName: containerAppsEnvironmentName
