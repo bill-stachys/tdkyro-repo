@@ -75,14 +75,14 @@ module web './app/web.bicep' = {
 }
 
 // Web2 frontend
-module web3 './app/web3.bicep' = {
-  name: 'web3'
+module web2 './app/web.bicep' = {
+  name: 'web2'
   scope: rg
   params: {
-    name: !empty(webContainerAppName) ? webContainerAppName : '${abbrs.appContainerApps}web3-${resourceToken}'
+    name: !empty(webContainerAppName) ? webContainerAppName : '${abbrs.appContainerApps}web2-${resourceToken}'
     location: location
     imageName: webImageName
-    api2ContainerAppName: api.outputs.SERVICE_API_NAME
+    apiContainerAppName: api.outputs.SERVICE_API_NAME
     applicationInsightsName: monitoring.outputs.applicationInsightsName
     containerAppsEnvironmentName: containerApps.outputs.environmentName
     containerRegistryName: containerApps.outputs.registryName

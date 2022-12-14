@@ -38,6 +38,34 @@ module app '../core/host/container-app.bicep' = {
   }
 }
 
+module app2 '../core/host/container-app.bicep' = {
+  name: '${serviceName}-container-app-module'
+  params: {
+    name: name
+    location: location
+    tags: union(tags, { 'azd-service-name': serviceName })
+    containerAppsEnvironmentName: containerAppsEnvironmentName
+    containerRegistryName: containerRegistryName
+    env: [
+      {
+        name: 'REACT_APP_APPLICATIONINSIGHTS_CONNECTION_STRING'
+        value: applicationInsights.properties.ConnectionString
+      }
+      {
+        name: 'REACT_APP_API_BASE_URL'
+        value: 'https://${api.properties.configuration.ingress.fqdn}'
+      }
+      {
+        name: 'APPLICATIONINSIGHTS_CONNECTION_STRING'
+        value: applicationInsights.properties.ConnectionString
+      }
+    ]
+    imageName: !empty(imageName) ? imageName : 'nginx:latest'
+    keyVaultName: keyVault.name
+    targetPort: 81
+  }
+}
+
 resource applicationInsights 'Microsoft.Insights/components@2020-02-02' existing = {
   name: applicationInsightsName
 }
