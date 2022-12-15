@@ -10,7 +10,7 @@ services:
     language: js
     host: containerapp
   api:
-    project: ./src/api
+    project: /Users/billstachys/Documents/Learn/kyro/kyro-backend
     module: app/api
     language: python
     host: containerapp
